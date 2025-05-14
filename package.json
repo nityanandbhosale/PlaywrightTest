@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "runTest": "npx playwright test --project=chromium --headless"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nityanandbhosale/PlaywrightTest.git"
