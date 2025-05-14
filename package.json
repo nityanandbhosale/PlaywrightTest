@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "runTest": "npx playwright test --project=chromium --headless"
+    "runTest": "npx playwright test --project=chromium"
   },
   "repository": {
     "type": "git",
