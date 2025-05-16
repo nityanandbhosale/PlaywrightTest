@@ -1,0 +1,51 @@
+name: Run Test Parallel
+on:
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'which region do you want to run the tests in?'
+        type: choice
+        options:
+          - westeurope
+          - centralindia
+          - "[centralindia, westeurope]"
+      environment:
+        description: 'which environment do you want to run the tests in?'
+        type: choice
+        options:
+          - qa
+          - staging
+          - prod 
+jobs:
+  playwright-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install Dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright Tests
+      run: |
+        echo "Running test with:"
+        echo "Region: ${{ inputs.region }}"
+        echo "Environment: ${{ inputs.environment }}"
+        
+        Environment=${{ inputs.environment }} npm run runTest
+      env:
+        Region: ${{ inputs.region }}
+        Environment: ${{ inputs.environment }}
+        userId: ${{ secrets.PLAYWRIGHT_USERID }}
+        password: ${{ secrets.PLAYWRIGHT_PASSWORD }}
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled()}}
+      with:
+        name: Playwright-report
+        path: playwright-report/
+        retention-days: 30
+
+    
