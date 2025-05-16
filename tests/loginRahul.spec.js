@@ -12,10 +12,10 @@ test('Verify the login with valid credentails', async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
     //css 
-    console.log(process.env.userID)
-    console.log(process.env.password)
-    await userName.fill(process.env.userID);
-    await page.locator("[type='password']").fill(process.env.password);
+    console.log(process.env.USER_ID)
+    console.log(process.env.PASSWORD)
+    await userName.fill(process.env.USER_ID);
+    await page.locator("[type='password']").fill(process.env.PASSWORD);
     await signIn.click();
     console.log(await page.locator("[style*='block']").textContent());
     await expect(page.locator("[style*='block']")).toContainText('Incorrect');

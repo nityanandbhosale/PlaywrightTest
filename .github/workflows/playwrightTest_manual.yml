@@ -41,8 +41,8 @@ jobs:
       env:
         Region: ${{ inputs.region }}
         Environment: ${{ inputs.environment }}
-        userId: ${{ secrets.PLAYWRIGHT_USERID }}
-        password: ${{ secrets.PLAYWRIGHT_PASSWORD }}
+        USER_ID: ${{ secrets.PLAYWRIGHT_USERID }}
+        PASSWORD: ${{ secrets.PLAYWRIGHT_PASSWORD }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled()}}
       with:
