@@ -34,6 +34,8 @@ jobs:
         echo "Running test with:"
         echo "Region: ${{ inputs.region }}"
         echo "Environment: ${{ inputs.environment }}"
+        echo "userName: ${{ secrets.PLAYWRIGHT_USERID }}"
+        echo "password: ${{ secrets.PLAYWRIGHT_PASSWORD }}"
         
         Environment=${{ inputs.environment }} npm run runTest
       env:
